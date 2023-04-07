@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% block navbar_content %}
+    <li><a href="{% url 'index' %}">Home</a></li>
+    <li><a href="{% url 'books' %}">All books</a></li>
+    <li><a href="{% url 'authors' %}" style="color: purple;">All authors</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Author List</h1>
+    {% if author_list %}
+        <ol>
+            {% for author in author_list %}
+            <li>
+                <a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a> 
+            </li>
+            {% endfor %}
+        </ol>
+    {% else %}
+            <p>There are no authors in the library.</p>
+    {% endif %}
+{% endblock %}
